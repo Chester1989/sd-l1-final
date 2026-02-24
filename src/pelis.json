@@ -1,1 +1,17 @@
-[]
+[
+  {
+    "id": "01",
+    "title": "Terminator",
+    "tags": "string[]"
+  },
+  {
+    "id": "02",
+    "title": "La cosa",
+    "tags": "string[]"
+  },
+  {
+    "id": "03",
+    "title": "Cara Cortada",
+    "tags": "string[]"
+  }
+]
