@@ -1,17 +1,17 @@
 [
   {
-    "id": "01",
+    "id": 1,
     "title": "Terminator",
-    "tags": "string[]"
+    "tags": ["acción", "sci-fi"]
   },
   {
-    "id": "02",
+    "id": 2,
     "title": "La cosa",
-    "tags": "string[]"
+    "tags": ["horror", "sci-fi"]
   },
   {
-    "id": "03",
+    "id": 3,
     "title": "Cara Cortada",
-    "tags": "string[]"
+    "tags": ["drama", "acción"]
   }
 ]

@@ -1,6 +1,7 @@
 import { PelisCollection, Peli } from "./models";
 
 class PelisController {
-  constructor() {}
+  constructor(private model: PelisCollection) {}
 }
+
 export { PelisController };
