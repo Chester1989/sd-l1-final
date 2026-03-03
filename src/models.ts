@@ -37,18 +37,16 @@ class PelisCollection {
     });
   }
 
-  add(peli: Peli): Promise<boolean> {
+  async add(peli: Peli): Promise<boolean> {
     // Optimización: Leemos una sola vez
-    return this.getAll().then((pelis) => {
-      const existe = pelis.find(p => p.id === peli.id);
-      
-      if (existe) {
-        return false;
-      } else {
-        pelis.push(peli);
-        return jsonfile.writeFile(this.filePath, pelis).then(() => true);
-      }
-    });
+    const pelis = await this.getAll();
+    const existe = pelis.find(p => p.id === peli.id);
+    if (existe) {
+      return false;
+    } else {
+      pelis.push(peli);
+      return jsonfile.writeFile(this.filePath, pelis).then(() => true);
+    }
   }
 }
 
