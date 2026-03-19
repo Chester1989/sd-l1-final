@@ -12,13 +12,13 @@ class PelisController {
       return this.model.getAll();
     }
   }
-getOne(options: { id?: number; search?: { title?: string; tag?: string } }): Promise<Peli | undefined> {
-  return this.get(options).then((result) => {
-    if (Array.isArray(result)) {
-      return result[0]; // Devuelve el primer elemento si es un array
-    }
-    return result; // Si ya es un solo objeto, lo devuelve directamente
-  });
+
+  async getOne(options: { id?: number; search?: { title?: string; tag?: string } }): Promise<Peli | undefined> {
+  const result_1 = await this.get(options);
+  if (Array.isArray(result_1)) {
+    return result_1[0]; // Devuelve el primer elemento si es un array
+  }
+  return result_1;
 }
 
 add(peli: Peli): Promise<boolean> {
@@ -27,3 +27,4 @@ add(peli: Peli): Promise<boolean> {
 }
 
 export { PelisController };
+

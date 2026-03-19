@@ -16,26 +16,26 @@ class PelisCollection {
   }
 
   // Corregido: Agregamos | undefined al retorno
-  getById(id: number): Promise<Peli | undefined> {
-    return this.getAll().then((pelis) => {
-      return pelis.find((p) => p.id === id);
-    });
+  async getById(id: number): Promise<Peli | undefined> {
+    const pelis = await this.getAll();
+    return pelis.find((p) => p.id === id);
   }
 
-  search(options: any): Promise<Peli[]> {
-    return this.getAll().then((pelis) => {
-      return pelis.filter((peli) => {
-        let cumple = true;
-        if (options.title) {
-          cumple = cumple && peli.title.toLowerCase().includes(options.title.toLowerCase());
-        }
-        if (options.tag) {
-          cumple = cumple && peli.tags.includes(options.tag);
-        }
-        return cumple;
-      });
-    });
-  }
+  async search(options: any): Promise<Peli[]> {
+  const pelis = await this.getAll();
+  return pelis.filter((peli) => {
+    let cumple = true;
+    if (options.title) {
+      console.log(`Buscando título: ${options.title}, en: ${peli.title}`);
+      cumple = cumple && peli.title.toLowerCase().includes(options.title.toLowerCase());
+    }
+    if (options.tag) {
+      console.log(`Buscando tag: ${options.tag}, en: ${peli.tags}`);
+      cumple = cumple && peli.tags.includes(options.tag);
+    }
+    return cumple;
+  });
+}
 
   async add(peli: Peli): Promise<boolean> {
     // Optimización: Leemos una sola vez

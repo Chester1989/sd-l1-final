@@ -1,6 +1,7 @@
 import minimist from 'minimist';
 import {PelisController} from './controllers'; // Asegúrate de que la ruta sea correcta
 import { PelisCollection } from './models';
+import { get } from 'http'; 
 
 function main() {
 const args = minimist(process.argv.slice(2));
@@ -12,12 +13,30 @@ if (!args._[0]) {
   pelisController.get({}).then((pelis) => {
     console.log(pelis);
   });
-} else if (args._[0] === 'search') {
-  // buscar
+}
+ else if (args._[0] === 'search') {
+   // buscar
   // ...
+  const searchOptions: any = {};
+if (args.title) {
+  searchOptions.title = args.title;
+}
+if (args.tag) {
+  searchOptions.tag = args.tag;
+}
+pelisController.get({ search: searchOptions }).then((pelis: any) => {
+  console.log(pelis);
+});
+
+
+} else if (args._[0] === 'get') {
+  const id = Number(args._[1]); // Asegúrate de que estás tomando el ID correctamente
+  pelisController.get({ id }).then((peli) => {
+    console.log(peli);
+  });
 } else if (args._[0] === 'add') {
   // agregar peli
-  pelisController.add({
+ pelisController.add({
     id: Number(args.id),
     title: args.title,
     tags: Array.isArray(args.tags) ? args.tags : [args.tags],
@@ -33,5 +52,5 @@ if (!args._[0]) {
 } else {
   console.log("Comando no reconocido...");
 }
-}
+};
 main();
