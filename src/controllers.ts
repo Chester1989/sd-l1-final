@@ -1,7 +1,11 @@
 import { PelisCollection, Peli } from "./models";
 
 class PelisController {
-  constructor(private model: PelisCollection) {}
+  private model: PelisCollection;
+
+  constructor (model?:PelisCollection) {
+    this.model = model ?? new PelisCollection();
+  }
 
   get(options: { id?: number; search?: { title?: string; tag?: string } }): Promise<Peli[]> | Promise<Peli> {
     if (options.id !== undefined) {

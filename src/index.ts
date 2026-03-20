@@ -1,7 +1,6 @@
 import minimist from 'minimist';
 import {PelisController} from './controllers'; // Asegúrate de que la ruta sea correcta
-import { PelisCollection } from './models';
-import { get } from 'http'; 
+import { PelisCollection } from './models'; 
 
 function main() {
 const args = minimist(process.argv.slice(2));
